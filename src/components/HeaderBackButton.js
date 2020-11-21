@@ -5,6 +5,7 @@ import {
   SafeAreaView,
   TouchableOpacity,
   StyleSheet,
+  Image,
 } from 'react-native';
 import Ionicon from 'react-native-vector-icons/Ionicons';
 import {withNavigation} from 'react-navigation';

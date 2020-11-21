@@ -109,9 +109,15 @@ HomeScreen.navigationOptions = (navData) => {
   return {
     header: () => (
       <SafeAreaView>
-        <View style={{paddingHorizontal: 20}}>
-          <Ionicon name="menu-outline" size={30} color="#404040" />
-        </View>
+        <TouchableOpacity>
+          <View
+            style={{paddingHorizontal: 20, marginBottom: 20, marginTop: 10}}>
+            <Image
+              source={require('../assets/menu.png')}
+              style={{width: 25, height: 20, padding: 10}}
+            />
+          </View>
+        </TouchableOpacity>
       </SafeAreaView>
     ),
   };
