@@ -12,6 +12,7 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		250A3273256750AF008C410E /* Segoe UI.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 250A3272256750AF008C410E /* Segoe UI.ttf */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
@@ -52,6 +53,7 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = shopper/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = shopper/main.m; sourceTree = "<group>"; };
 		1F98F6A3DC71CA358EFDFFFC /* Pods-shopper-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shopper-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-shopper-tvOS/Pods-shopper-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		250A3272256750AF008C410E /* Segoe UI.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Segoe UI.ttf"; sourceTree = "<group>"; };
 		2557EF2C2524DBA7000311A4 /* Fontisto.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Fontisto.ttf; sourceTree = "<group>"; };
 		2557EF2D2524DBA7000311A4 /* Octicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Octicons.ttf; sourceTree = "<group>"; };
 		2557EF2E2524DBA7000311A4 /* Feather.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Feather.ttf; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 				2557EF2F2524DBA7000311A4 /* Entypo.ttf */,
 				2557EF302524DBA7000311A4 /* FontAwesome5_Brands.ttf */,
 				2557EF312524DBA7000311A4 /* MaterialCommunityIcons.ttf */,
+				250A3272256750AF008C410E /* Segoe UI.ttf */,
 				2557EF322524DBA7000311A4 /* AntDesign.ttf */,
 				2557EF332524DBA7000311A4 /* Foundation.ttf */,
 				2557EF342524DBA7000311A4 /* Ionicons.ttf */,
@@ -388,24 +391,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				250A3273256750AF008C410E /* Segoe UI.ttf in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				2557EF422524DBA7000311A4 /* AntDesign.ttf in Resources */,
-				DBCB96F3E933468797F62EFF /* Entypo.ttf in Resources */,
-				2557EF472524DBA7000311A4 /* FontAwesome.ttf in Resources */,
-				2557EF3E2524DBA7000311A4 /* Feather.ttf in Resources */,
-				51819B6655364E9F9632B051 /* FontAwesome5_Regular.ttf in Resources */,
-				7162CE177AA84408802A2308 /* Fontisto.ttf in Resources */,
-				2557EF492524DBA7000311A4 /* EvilIcons.ttf in Resources */,
-				D166458DFB4443BD9C57E64D /* Foundation.ttf in Resources */,
-				E31CAA339E74484F9DF281DB /* Ionicons.ttf in Resources */,
-				2557EF402524DBA7000311A4 /* FontAwesome5_Brands.ttf in Resources */,
-				2557EF452524DBA7000311A4 /* FontAwesome5_Solid.ttf in Resources */,
-				2EBCCB65D2D6432EBA51E59A /* MaterialIcons.ttf in Resources */,
-				BC2022CD78484ECC8FA7C5AD /* Octicons.ttf in Resources */,
-				5AB6B21BEF304898AFDE30F4 /* SimpleLineIcons.ttf in Resources */,
-				2557EF412524DBA7000311A4 /* MaterialCommunityIcons.ttf in Resources */,
-				13B172AB13C54853826311B2 /* Zocial.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

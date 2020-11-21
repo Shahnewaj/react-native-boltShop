@@ -1,15 +1,25 @@
-import {createAppContainer} from 'react-navigation';
+import {createAppContainer, createSwitchNavigator} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
-import SearchScreen from '../src/screens/SearchScreen';
-import DetailsScreen from '../src/screens/DetailsScreen';
+import CheckoutScreen from '../src/screen/CheckoutScreen';
+import HomeScreen from '../src/screen/HomeScreen';
+import LoginScreen from '../src/screen/LoginScreen';
+import OtpScreen from '../src/screen/OtpScreen';
+import WelcomeScreen from '../src/screen/WelcomeScreen';
 
-const AppNavigator = createStackNavigator({
-  Search: SearchScreen,
-  Details: DetailsScreen,
+const AuthStack = createStackNavigator({
+  Welcome: WelcomeScreen,
+  Login: LoginScreen,
+  Otp: OtpScreen,
+});
 
-  // Details:{
-  //     screen: DetailsScreen,
-  // },
+const ShopNavigator = createStackNavigator({
+  Home: HomeScreen,
+  checkout: CheckoutScreen,
+});
+
+const AppNavigator = createSwitchNavigator({
+  Shop: ShopNavigator,
+  Auth: AuthStack,
 });
 
 export default createAppContainer(AppNavigator);
