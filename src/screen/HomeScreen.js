@@ -6,50 +6,20 @@ import {
   SafeAreaView,
   FlatList,
   StyleSheet,
-  ImageBackground,
   Image,
   TouchableOpacity,
   ScrollView,
 } from 'react-native';
 // import icon set
-import Ionicon from 'react-native-vector-icons/Ionicons';
+import {useSelector} from 'react-redux';
 // import demo data
-import {category, product} from '../data/data';
+import CategoryItem from '../components/shop/CategoryItem';
+import ProductItem from '../components/shop/ProductItem';
 
-// render item for category part
+const HomeScreen = (props) => {
+  const Products = useSelector((state) => state.product.AllProduct);
+  const Category = useSelector((state) => state.product.AllCategory);
 
-const renderCategory = (itemData) => (
-  <TouchableOpacity>
-    <View style={styles.categoryItemView}>
-      <ImageBackground
-        source={{uri: itemData.item.image}}
-        style={styles.catBgImage}>
-        <View
-          style={{
-            backgroundColor: `${itemData.item.color}`,
-            opacity: 0.8,
-            height: '100%',
-          }}>
-          <Text style={styles.catName}> {itemData?.item.title} </Text>
-        </View>
-      </ImageBackground>
-    </View>
-  </TouchableOpacity>
-);
-// render product item
-const renderProduct = (itemData) => (
-  <TouchableOpacity>
-    <View style={styles.productView}>
-      <Image style={styles.productImage} source={{uri: itemData.item.image}} />
-      <Text style={styles.productPrice}> ${itemData?.item.price} </Text>
-      <Text style={styles.productTitle}> {itemData?.item.title} </Text>
-    </View>
-  </TouchableOpacity>
-);
-
-console.log(category);
-
-const HomeScreen = () => {
   return (
     <>
       <View style={styles.container}>
@@ -63,38 +33,72 @@ const HomeScreen = () => {
                 <FlatList
                   horizontal={true}
                   showsHorizontalScrollIndicator={false}
-                  data={category}
-                  renderItem={renderCategory}
+                  data={Category}
+                  renderItem={(itemData) => (
+                    <CategoryItem
+                      image={itemData.item.image}
+                      color={itemData.item.color}
+                      title={itemData.item.title}
+                    />
+                  )}
                 />
               </View>
 
               <View style={styles.flatView}>
                 <View style={styles.titleView}>
                   <Text style={styles.title}>Featured</Text>
-                  <TouchableOpacity>
+                  <TouchableOpacity
+                    onPress={() => {
+                      props.navigation.navigate('Checkout');
+                    }}>
                     <Text style={styles.seeAll}>See All </Text>
                   </TouchableOpacity>
                 </View>
                 <FlatList
                   horizontal={true}
                   showsHorizontalScrollIndicator={false}
-                  data={product}
-                  renderItem={renderProduct}
+                  data={Products}
+                  renderItem={(itemData) => (
+                    <ProductItem
+                      onTabDetails={() =>
+                        props.navigation.navigate('Details', {
+                          productId: itemData.item.id,
+                        })
+                      }
+                      title={itemData.item.title}
+                      price={itemData.item.price}
+                      image={itemData.item.image}
+                    />
+                  )}
                 />
               </View>
 
               <View style={styles.flatView}>
                 <View style={styles.titleView}>
-                  <Text style={styles.title}>Best Sell</Text>
-                  <TouchableOpacity>
+                  <Text style={styles.title}>Featured</Text>
+                  <TouchableOpacity
+                    onPress={() => {
+                      props.navigation.navigate('Checkout');
+                    }}>
                     <Text style={styles.seeAll}>See All </Text>
                   </TouchableOpacity>
                 </View>
                 <FlatList
                   horizontal={true}
                   showsHorizontalScrollIndicator={false}
-                  data={product}
-                  renderItem={renderProduct}
+                  data={Products}
+                  renderItem={(itemData) => (
+                    <ProductItem
+                      onTabDetails={() =>
+                        props.navigation.navigate('Details', {
+                          productId: itemData.item.id,
+                        })
+                      }
+                      title={itemData.item.title}
+                      price={itemData.item.price}
+                      image={itemData.item.image}
+                    />
+                  )}
                 />
               </View>
             </View>

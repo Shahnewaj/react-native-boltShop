@@ -1,6 +1,6 @@
-export const product = [
+export const Product = [
   {
-    id: 1,
+    id: '1',
     title: 'Girls fashion',
     description: ' Here is the short description',
     price: '45.5',
@@ -8,7 +8,7 @@ export const product = [
     type: 'feature',
   },
   {
-    id: 2,
+    id: '2',
     title: 'Girls vintage ',
     description: ' Here is the short description',
     price: '23.5',
@@ -16,7 +16,7 @@ export const product = [
     type: 'best',
   },
   {
-    id: 3,
+    id: '3',
     title: 'Girls classic',
     description: ' Here is the short description',
     price: '30.5',
@@ -24,7 +24,7 @@ export const product = [
     type: 'feature',
   },
   {
-    id: 4,
+    id: '4',
     title: 'Girls fashion',
     description: ' Here is the short description',
     price: '45.5',
@@ -32,7 +32,7 @@ export const product = [
     type: 'best',
   },
   {
-    id: 5,
+    id: '5',
     title: 'Girls vintage ',
     description: ' Here is the short description',
     price: '23.5',
@@ -40,7 +40,7 @@ export const product = [
     type: 'feature',
   },
   {
-    id: 6,
+    id: '6',
     title: 'Girls classic',
     description: ' Here is the short description',
     price: '30.5',
@@ -49,7 +49,7 @@ export const product = [
   },
 ];
 
-export const category = [
+export const Category = [
   {
     id: '1',
     title: 'Women',

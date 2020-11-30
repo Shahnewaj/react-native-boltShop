@@ -8,8 +8,27 @@ import {
   StatusBar,
 } from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
-
 import AppNavigator from './navigation/AppNavigation';
+// import statement for redux store
+
+import {createStore, combineReducers, applyMiddleware, compose} from 'redux';
+import {Provider} from 'react-redux';
+import ReduxThunk from 'redux-thunk';
+
+import ProductReducer from './store/reducer/Product';
+import cartReducer from './store/reducer/cart';
+
+const rootReducer = combineReducers({
+  product: ProductReducer,
+  cart: cartReducer,
+});
+
+const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const store = createStore(
+  rootReducer,
+  composeEnhancer(applyMiddleware(ReduxThunk)),
+);
 
 const App = () => {
   useEffect(() => {
@@ -18,7 +37,9 @@ const App = () => {
 
   return (
     <>
-      <AppNavigator />
+      <Provider store={store}>
+        <AppNavigator />
+      </Provider>
     </>
   );
 };
