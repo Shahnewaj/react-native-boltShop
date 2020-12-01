@@ -6,80 +6,119 @@ import {
   TouchableOpacity,
   Image,
   StyleSheet,
+  FlatList,
+  ScrollView,
 } from 'react-native';
 import HeaderBackButton from '../components/HeaderBackButton';
 import Feather from 'react-native-vector-icons/Feather';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Entypo from 'react-native-vector-icons/Entypo';
 
-import {product} from '../data/data';
 import CustomButton from '../components/CustomButton';
+import {useSelector, useDispatch} from 'react-redux';
+import CartItem from '../components/shop/CartItem';
+import {
+  removeProduct,
+  reduceProduct,
+  increaseProduct,
+} from '../../store/action/cart';
 
-const CheckoutScreen = () => {
+const CheckoutScreen = (props) => {
+  const cartTotal = useSelector((state) => state.cart.totalAmount);
+  const allCartItem = useSelector((state) => {
+    const newCartItems = [];
+
+    for (const key in state.cart.cart) {
+      newCartItems.push({
+        productId: key,
+        productTitle: state.cart.cart[key].productTitle,
+        productPrice: state.cart.cart[key].productPrice,
+        productImage: state.cart.cart[key].productImage,
+        quantity: state.cart.cart[key].quantity,
+        sum: state.cart.cart[key].sum,
+      });
+    }
+    return newCartItems;
+  });
+
+  console.log(allCartItem);
+
+  const dispatch = useDispatch();
+
+  let total = 0;
+
+  if (cartTotal === 0) {
+    total = 0;
+  } else {
+    total = cartTotal + cartTotal * 0.05 + 10;
+  }
+
   return (
     <View style={styles.conatiner}>
       <SafeAreaView>
-        <View style={styles.mainView}>
-          <View style={styles.titleView}>
-            <Text style={styles.title}> Checkout </Text>
-          </View>
-          <View style={styles.cartItemView}>
-            <View style={styles.itemView}>
-              <View style={styles.itemImageView}>
-                <Image
-                  style={styles.itemImage}
-                  source={require('../assets/welcome.png')}
-                />
+        <ScrollView>
+          <View style={styles.mainView}>
+            <View style={styles.titleView}>
+              <Text style={styles.title}> Checkout </Text>
+            </View>
+            <View style={styles.cartItemView}>
+              <FlatList
+                data={allCartItem}
+                keyExtractor={(item) => item.productId}
+                renderItem={({item}) => (
+                  <CartItem
+                    title={item.productTitle}
+                    price={item.sum}
+                    image={item.productImage}
+                    vendor="Dummy Vendor"
+                    quantity={item.quantity}
+                    handleRemove={() => {
+                      dispatch(removeProduct(item.productId));
+                    }}
+                    handleReduce={() => {
+                      dispatch(reduceProduct(item.productId));
+                    }}
+                    handleIncrease={() => {
+                      dispatch(increaseProduct(item.productId));
+                    }}
+                  />
+                )}
+              />
+            </View>
+            <View style={styles.addressView}>
+              <Text style={styles.addressText}>
+                Shewrapara, Mirpur, Dhaka-1216 House no: 938 Road no: 9
+              </Text>
+              <Entypo name="dot-single" size={40} color="#667EEA" />
+            </View>
+            <View style={styles.sumView}>
+              <View style={styles.sumItem}>
+                <Text style={styles.sumTitle}>SubTotal</Text>
+                <Text style={styles.sumValue}>${cartTotal}</Text>
               </View>
-              <View style={styles.itemDetailsView}>
-                <Text style={styles.itemTitle}>Women T-Shirt</Text>
-                <Text style={styles.itemVendor}> Lotto </Text>
-                <Text style={styles.itemPrice}> $18 </Text>
-                <View style={styles.itemAdjustView}>
-                  <TouchableOpacity>
-                    <AntDesign name="minus" size={20} color="#565656" />
-                  </TouchableOpacity>
-                  <Text style={styles.number}> 7 </Text>
-                  <TouchableOpacity>
-                    <AntDesign name="plus" size={18} color="#565656" />
-                  </TouchableOpacity>
-                </View>
+              <View style={styles.sumItem}>
+                <Text style={styles.sumTitle}>Discount</Text>
+                <Text style={styles.sumValue}>5%</Text>
               </View>
-              <View style={styles.itemCancelView}>
-                <TouchableOpacity>
-                  <Feather name="x" size={26} />
-                </TouchableOpacity>
+              <View style={styles.sumItem}>
+                <Text style={styles.sumTitle}>Shipping</Text>
+                <Text style={styles.sumValue}>$10</Text>
+              </View>
+              <View style={styles.sumTotal}>
+                <Text style={styles.sumTitle}>Total</Text>
+                <Text style={styles.sumValue}>${total}</Text>
               </View>
             </View>
-          </View>
-          <View style={styles.addressView}>
-            <Text style={styles.addressText}>
-              Shewrapara, Mirpur, Dhaka-1216 House no: 938 Road no: 9
-            </Text>
-            <Entypo name="dot-single" size={40} color="#667EEA" />
-          </View>
-          <View style={styles.sumView}>
-            <View style={styles.sumItem}>
-              <Text style={styles.sumTitle}>SubTotal</Text>
-              <Text style={styles.sumValue}>$34</Text>
-            </View>
-            <View style={styles.sumItem}>
-              <Text style={styles.sumTitle}>Discount</Text>
-              <Text style={styles.sumValue}>5%</Text>
-            </View>
-            <View style={styles.sumItem}>
-              <Text style={styles.sumTitle}>Shipping</Text>
-              <Text style={styles.sumValue}>$10</Text>
-            </View>
-            <View style={styles.sumTotal}>
-              <Text style={styles.sumTitle}>Total</Text>
-              <Text style={styles.sumValue}>$10</Text>
+            <View style={styles.buttonView}>
+              <CustomButton
+                title="Back To Home"
+                onPress={() => {
+                  props.navigation.navigate('Home');
+                }}
+              />
             </View>
           </View>
-          <View style={styles.buttonView}>
-            <CustomButton title="Back To Home" onPress={() => {}} />
-          </View>
-        </View>
+        </ScrollView>
       </SafeAreaView>
     </View>
   );
@@ -88,6 +127,7 @@ const CheckoutScreen = () => {
 const styles = StyleSheet.create({
   conatiner: {
     backgroundColor: '#fff',
+    flex: 1,
   },
   mainView: {
     marginHorizontal: 20,
@@ -210,15 +250,10 @@ const styles = StyleSheet.create({
   },
 });
 
-// CheckoutScreen.navigationOptions = (navData) => {
-//   return {
-//     header: () => null,
-//   };
-// };
-// CheckoutScreen.navigationOptions = () => {
-//   return {
-//     header: () => <HeaderBackButton />,
-//   };
-// };
+CheckoutScreen.navigationOptions = (navData) => {
+  return {
+    header: () => null,
+  };
+};
 
 export default CheckoutScreen;

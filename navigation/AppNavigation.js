@@ -28,8 +28,8 @@ const ShopNavigator = createStackNavigator(
 );
 
 const AppNavigator = createSwitchNavigator({
-  Shop: ShopNavigator,
   Auth: AuthStack,
+  Shop: ShopNavigator,
 });
 
 export default createAppContainer(AppNavigator);
