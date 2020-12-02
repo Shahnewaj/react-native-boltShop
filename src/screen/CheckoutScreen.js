@@ -50,7 +50,7 @@ const CheckoutScreen = (props) => {
   if (cartTotal === 0) {
     total = 0;
   } else {
-    total = cartTotal + cartTotal * 0.05 + 10;
+    total = cartTotal - cartTotal * 0.05 + 10;
   }
 
   return (
